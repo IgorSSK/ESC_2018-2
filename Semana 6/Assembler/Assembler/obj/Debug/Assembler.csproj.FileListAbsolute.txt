@@ -1,0 +1,7 @@
+D:\Users\igors\source\repos\Assembler\Assembler\bin\Debug\Assembler.exe.config
+D:\Users\igors\source\repos\Assembler\Assembler\bin\Debug\Assembler.exe
+D:\Users\igors\source\repos\Assembler\Assembler\bin\Debug\Assembler.pdb
+D:\Users\igors\source\repos\Assembler\Assembler\obj\Debug\Assembler.csprojAssemblyReference.cache
+D:\Users\igors\source\repos\Assembler\Assembler\obj\Debug\Assembler.csproj.CoreCompileInputs.cache
+D:\Users\igors\source\repos\Assembler\Assembler\obj\Debug\Assembler.exe
+D:\Users\igors\source\repos\Assembler\Assembler\obj\Debug\Assembler.pdb
