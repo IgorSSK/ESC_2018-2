@@ -1,0 +1,13 @@
+D:\Users\igors\source\repos\Assembler\Assembler\bin\Debug\Assembler.exe.config
+D:\Users\igors\source\repos\Assembler\Assembler\bin\Debug\Assembler.exe
+D:\Users\igors\source\repos\Assembler\Assembler\bin\Debug\Assembler.pdb
+D:\Users\igors\source\repos\Assembler\Assembler\obj\Debug\Assembler.csprojAssemblyReference.cache
+D:\Users\igors\source\repos\Assembler\Assembler\obj\Debug\Assembler.csproj.CoreCompileInputs.cache
+D:\Users\igors\source\repos\Assembler\Assembler\obj\Debug\Assembler.exe
+D:\Users\igors\source\repos\Assembler\Assembler\obj\Debug\Assembler.pdb
+C:\Users\igors\source\repos\ESC_2018-2\Semana 6\Assembler\Assembler\bin\Debug\Assembler.exe.config
+C:\Users\igors\source\repos\ESC_2018-2\Semana 6\Assembler\Assembler\bin\Debug\Assembler.exe
+C:\Users\igors\source\repos\ESC_2018-2\Semana 6\Assembler\Assembler\bin\Debug\Assembler.pdb
+C:\Users\igors\source\repos\ESC_2018-2\Semana 6\Assembler\Assembler\obj\Debug\Assembler.csproj.CoreCompileInputs.cache
+C:\Users\igors\source\repos\ESC_2018-2\Semana 6\Assembler\Assembler\obj\Debug\Assembler.exe
+C:\Users\igors\source\repos\ESC_2018-2\Semana 6\Assembler\Assembler\obj\Debug\Assembler.pdb
