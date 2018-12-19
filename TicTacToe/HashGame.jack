@@ -1,0 +1,231 @@
+class HashGame{
+    static Board board;
+    static Draw cross, circle;
+    static int row, col;
+
+    function void new(){
+        let row = 1;
+        let col = 1;
+        let cross = Draw.new(1);
+        let circle = Draw.new(2);
+        return;
+    }
+
+    function void startGame(){
+        var int curPlayer, curDraw, gameStatus;
+        var boolean isGameOver;
+
+        do HashGame.showMessage("Press [ENTER] to start the game!");
+        do HashGame.enterKey();
+
+        while(true){
+            //Check who is going to start
+            let curPlayer = HashGame.playerChoice("Who plays First? (1 - Player 1 | 2 - Player 2) ");
+            let curDraw = cross;
+            let isGameOver = false;
+            let board = Board.new(200,50);
+            
+            while(~isGameOver){
+                let gameStatus = HashGame.gameplay(curPlayer, curDraw);
+                
+                //End with Winner
+                if(gameStatus = 3){
+                    let isGameOver = true;
+
+                    if(curPlayer = 0){
+                        do HashGame.showMessage("Player 1 won the game!");
+                    }else{
+                        do HashGame.showMessage("Player 2 won the game!");
+                    }
+
+                    do HashGame.enterKey();
+                }
+
+                //Draw
+                if(gameStatus = 2){
+                    do HashGame.showMessage("IT'S A DRAW!! Press [ENTER] to restart the Game!!");
+                    do HashGame.enterKey();
+                    let isGameOver = true;
+                }
+
+                //InGame
+                if(gameStatus = 1){
+                    let curPlayer = HashGame.changeTurn(curPlayer);
+                    let curDraw = HashGame.changeDraw(curDraw); 
+                }
+
+                //GameOver
+                if(gameStatus = 0){
+                    let isGameOver = true;
+                }
+            }
+
+            do board.dispose();
+
+        }
+
+        return;
+
+    }
+
+    function int gameplay(int player, Draw d){
+        var Array player1Move, player2Move;
+        var boolean isInputValid;
+        var int input;
+        
+        let isInputValid = false;
+
+        if(player = 0){ //Player 1
+
+            do HashGame.showPlayerTurn("Player 1 Turn");
+            while(~isInputValid){
+                let input = HashGame.keyboardInputRead("Enter move (1 to 9):");
+				let player1Move = HashGame.inputMove(input);
+                let isInputValid = board.isFree(player1Move[0],player1Move[1]);
+            }
+
+            do board.makeMove(player1Move[0],player1Move[1],d);
+			do board.drawMove(player1Move[0],player1Move[1],d);
+			do player1Move.dispose();
+            return HashGame.checkBoard();
+
+        }else{
+            do HashGame.showPlayerTurn("Player 2 Turn");
+            while(~isInputValid){
+                let input = HashGame.keyboardInputRead("Enter move (1 to 9):");
+				let player2Move = HashGame.inputMove(input);
+                let isInputValid = board.isFree(player2Move[0],player2Move[1]);
+            }
+
+            do board.makeMove(player2Move[0],player2Move[1],d);
+			do board.drawMove(player2Move[0],player2Move[1],d);
+			do player2Move.dispose();
+            return HashGame.checkBoard();
+        }
+    }
+
+    function int changeTurn(int player){
+        if(player = 0){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    function int changeDraw(int draw){
+        if(draw = cross){
+            return circle;
+        }else{
+            return cross;
+        }
+    }
+
+    function void showPlayerTurn(String player) {
+		do Output.moveCursor(20,16);
+		do Output.printString(player);
+		return;
+	}
+
+    function int checkBoard(){
+        do board.evaluateBoard();
+        //Someone won?
+        if(board.isWin()){
+            do board.drawWin();
+            return 3;
+        }
+
+        //Its a draw?
+        if(board.isDraw()){
+            return 2;
+        }
+
+        //Keep going
+        return 1;
+    }
+
+    function void enterKey(){
+        var int count;
+        var boolean isPressed;
+
+        let isPressed = false;
+        let count = 1;
+
+        while(~isPressed){
+
+            if(Keyboard.keyPressed()=128) {
+				let isPressed = true;
+			}
+
+			let count = count+1;
+			if(count > 25444) {
+				let count = 1;
+			}
+        }
+        return;
+    }
+
+    function Array inputMove(int input) {
+
+		var Array moves;
+		let moves = Array.new(2);
+		let moves[0] = (input-1)/3 ; 
+		let moves[1] = (input-1)-(3*moves[0]);
+		return moves;
+		
+	}
+
+    function void cleanScreen(){
+		do Output.moveCursor(row,col);
+		do Output.printString("                                                 ");
+		return;
+    }
+
+    function void showMessage(String msg){
+        do HashGame.cleanScreen();
+        do Output.moveCursor(row,col);
+		do Output.printString(msg);
+		do msg.dispose();
+		return;
+    }
+
+    function int keyboardInputRead(String str){
+        var char c;
+
+        do HashGame.cleanScreen();
+        while(true){
+            do Output.moveCursor(row,col);
+			do Output.printString(str);
+			let c = Keyboard.readChar();
+			
+            //Numbers between 0-9 in ASCII code
+			if((c > 47) & (c < 58)) {
+				do str.dispose();
+				return c-48;
+			}
+        } 
+        return 0;
+    }
+
+    function int playerChoice(String str){
+        var char c;
+        do HashGame.cleanScreen();
+
+        while(true){
+            do Output.moveCursor(row,col);
+			do Output.printString(str);
+			let c = Keyboard.readChar();
+
+            //Only acept 1 or 2
+            if(c = 49){
+                do str.dispose();
+                return 0;
+            } 
+            if(c = 50){
+                do str.dispose();
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+}
